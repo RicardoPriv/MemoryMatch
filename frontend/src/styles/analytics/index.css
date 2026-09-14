@@ -1,0 +1,17 @@
+#analytics-container {
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  gap: clamp(1.125rem, 2vw, 1.625rem);
+  min-height: 100%;
+  padding: var(--panel-pad);
+  background:
+    linear-gradient(90deg, rgba(7, 16, 31, 0.96), rgba(7, 22, 42, 0.76)),
+    var(--panel);
+}
+
+@media (max-width: 53.75rem) {
+  #analytics-container {
+    grid-template-rows: auto auto auto;
+    gap: clamp(0.875rem, 3vw, 1.125rem);
+  }
+}

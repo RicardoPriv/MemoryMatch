@@ -1,0 +1,128 @@
+#data-section {
+  display: grid;
+  align-content: start;
+  gap: clamp(0.875rem, 2vw, 1.5rem);
+}
+
+#score,
+#highscore,
+#remaining,
+#log {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(27, 142, 202, 0.36);
+  border-radius: var(--corner-md);
+  background:
+    repeating-linear-gradient(
+      0deg,
+      rgba(49, 199, 255, 0.035) 0,
+      rgba(49, 199, 255, 0.035) 1px,
+      transparent 1px,
+      transparent 3px
+    ),
+    rgba(7, 24, 45, 0.58);
+  box-shadow:
+    0 0 0 1px rgba(49, 199, 255, 0.04) inset,
+    0 0 1.375rem rgba(18, 120, 180, 0.1);
+}
+
+#score {
+  min-height: 6.125rem;
+  padding: clamp(1.125rem, 1.8vw, 1.5rem) 1rem 1rem;
+}
+
+#score .container,
+#highscore,
+#remaining {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: clamp(0.75rem, 2vw, 1.125rem);
+}
+
+.data-desc {
+  color: var(--text-muted);
+  font-family: var(--mono);
+  font-size: clamp(0.5625rem, 0.8vw, 0.625rem);
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+#score-count,
+#highscore-count,
+#remaining-count {
+  color: var(--cyan);
+  font-family: var(--mono);
+  font-weight: 900;
+  line-height: 1;
+  text-shadow: 0 0 0.75rem var(--glow-soft);
+}
+
+#score-count {
+  font-size: clamp(1.5rem, 2.4vw, 1.625rem);
+  font-style: italic;
+}
+
+#highscore,
+#remaining {
+  min-height: 4.625rem;
+  padding: clamp(1.125rem, 1.8vw, 1.5rem) 1rem;
+}
+
+#highscore-count {
+  color: #edfaff;
+  font-size: clamp(1.125rem, 2vw, 1.3125rem);
+}
+
+#remaining-count {
+  font-size: clamp(1.25rem, 2vw, 1.375rem);
+}
+
+#score-bar {
+  height: 4px;
+  margin-top: 0.75rem;
+  border-radius: 999px;
+  background:
+    linear-gradient(90deg, var(--cyan) 0%, rgba(49, 199, 255, 0.14) 0%),
+    rgba(49, 199, 255, 0.12);
+  box-shadow: 0 0 0.625rem var(--glow-soft);
+}
+
+#log {
+  display: grid;
+  min-height: 4.875rem;
+  place-items: center;
+  padding: clamp(1rem, 2vw, 1.125rem);
+}
+
+#log p {
+  color: var(--text-muted);
+  font-family: var(--mono);
+  font-size: clamp(0.6875rem, 1vw, 0.75rem);
+  font-style: italic;
+  letter-spacing: 0.06em;
+}
+
+@media (max-width: 53.75rem) {
+  #data-section {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0.75rem;
+  }
+
+  #score,
+  #log {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (max-width: 35rem) {
+  #data-section {
+    grid-template-columns: 1fr;
+  }
+
+  #score,
+  #log {
+    grid-column: auto;
+  }
+}

@@ -1,0 +1,38 @@
+#title-section {
+  text-align: left;
+}
+
+#title {
+  max-width: 14.5rem;
+  color: #f0fbff;
+  font-family: var(--display);
+  font-size: clamp(1.25rem, 1.8vw, 1.375rem);
+  font-style: italic;
+  font-weight: 900;
+  line-height: 1.16;
+  text-transform: uppercase;
+  text-shadow:
+    0.0625rem 0.0625rem 0 rgba(154, 226, 255, 0.36),
+    0 0 0.875rem rgba(40, 191, 255, 0.18);
+}
+
+#subtitle {
+  max-width: 15.625rem;
+  margin-top: 0.75rem;
+  color: var(--text-muted);
+  font-family: var(--mono);
+  font-size: clamp(0.5625rem, 0.8vw, 0.625rem);
+  font-weight: 800;
+  line-height: 1.55;
+  letter-spacing: 0.04em;
+}
+
+@media (max-width: 53.75rem) {
+  #title {
+    max-width: none;
+  }
+
+  #subtitle {
+    max-width: 34rem;
+  }
+}
