@@ -12,8 +12,13 @@ function MatchBoard({ cardsData }: MatchBoardProps) {
 
   return (
     <section id="matchboard-container">
-      {hasCardData && <Matchcard id={cardsData[0].id} name={cardsData[0].name} types={cardsData[0].types}
-        sprite={cardsData[0].sprite} />}
+      {hasCardData && cardsData.map((cardData, index) => {
+        return <Matchcard key={index}
+          id={cardData.id}
+          name={cardData.name}
+          types={cardData.types}
+          sprite={cardData.sprite} />
+      })}
     </section>
   )
 }

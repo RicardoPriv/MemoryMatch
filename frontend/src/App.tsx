@@ -6,6 +6,8 @@ import MatchBoard from './components/matchboard/matchboard'
 import type { PokemonData } from './types/pokemonData'
 import { fetchPokemonData } from './api/pokemonApi'
 
+const cardCount = 10;
+
 function App() {
   const [cardsData, setCardData] = useState<PokemonData[]>([])
 
@@ -18,18 +20,23 @@ function App() {
         const pokemonCard: PokemonData = {
           id: data.id,
           name: data.name,
-          types: ["grass", "poison"],
+          types: data.types.map((typeData: { type: { name: string } }) => typeData.type.name),
           sprite: data.sprites.front_default
         }
 
-        const newState: PokemonData[] = [...cardsData, pokemonCard];
-        setCardData(newState);
+        setCardData((previous) => {
+          return [...previous, pokemonCard]
+        });
       } catch (error) {
         return "";
       }
     }
 
-    loadData(1);
+
+    for (let i = 0; i < cardCount; i++) {
+      let seed: number = Math.floor(Math.random() * 151) + 1;
+      loadData(seed);
+    }
   }, [])
 
   return (
