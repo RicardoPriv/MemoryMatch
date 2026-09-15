@@ -18,6 +18,7 @@ function App() {
         const pokemonCard: PokemonData = {
           id: data.id,
           name: data.name,
+          types: ["grass", "poison"],
           sprite: data.sprites.front_default
         }
 

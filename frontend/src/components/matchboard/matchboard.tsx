@@ -1,5 +1,5 @@
 import type { PokemonData } from "@/types/pokemonData";
-
+import Matchcard from "./matchcard";
 
 type MatchBoardProps = {
   cardsData: PokemonData[]
@@ -12,8 +12,8 @@ function MatchBoard({ cardsData }: MatchBoardProps) {
 
   return (
     <section id="matchboard-container">
-      {hasCardData && `${cardsData[0].id} | ${cardsData[0].name} | ${cardsData[0].sprite}`
-      }
+      {hasCardData && <Matchcard id={cardsData[0].id} name={cardsData[0].name} types={cardsData[0].types}
+        sprite={cardsData[0].sprite} />}
     </section>
   )
 }
