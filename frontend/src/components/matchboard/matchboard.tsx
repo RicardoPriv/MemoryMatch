@@ -3,7 +3,7 @@ import Matchcard from "./matchcard";
 
 type MatchBoardProps = {
   cardsData: PokemonCard[],
-  handleCardClick: React.MouseEventHandler<HTMLButtonElement>
+  handleCardClick: (index: number) => void
 }
 
 function MatchBoard({ cardsData, handleCardClick }: MatchBoardProps) {
@@ -12,7 +12,8 @@ function MatchBoard({ cardsData, handleCardClick }: MatchBoardProps) {
   return (
     <section id="matchboard-container">
       {hasCardData && cardsData.map((cardData, index) => {
-        return <Matchcard key={index}
+        return <Matchcard key={cardData.pokemon.id}
+          cardIndex={index}
           id={cardData.pokemon.id}
           name={cardData.pokemon.name}
           types={cardData.pokemon.types}

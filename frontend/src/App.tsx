@@ -14,11 +14,12 @@ const gs = {
   currentScore: 0,
   bestScore: 0
 }
+const scoreGain = 1;
 
 function App() {
   const [gameState, setGameState] = useState<GameState>(gs)
 
-  useEffect(() => {
+  function startNewGame() {
     async function loadData(id: number): Promise<PokemonCard | null> {
       try {
         const data = await fetchPokemonData(id);
@@ -61,17 +62,24 @@ function App() {
       setGameState((previous) => {
         return {
           cardsData: cardsData,
-          currentScore: previous.currentScore,
+          currentScore: gs.currentScore,
           bestScore: previous.bestScore
         }
       })
     }
 
     loadXCards(cardCount);
-  }, [])
+  }
 
-  function handleCardClick() {
+  function handleCardClick(cardIndex: number) {
     const shuffle = [...gameState.cardsData];
+
+    if (shuffle[cardIndex].clicked) {
+      return; //add later gameover functionality
+    } else {
+      shuffle[cardIndex].clicked = true;
+    }
+
 
     for (let i = shuffle.length - 1; i > 0; i--) {
       const randomIndex = Math.floor(Math.random() * (i + 1));
@@ -82,18 +90,24 @@ function App() {
     }
 
     setGameState((previous) => {
+      let bs = previous.bestScore;
+      if (bs < previous.currentScore + scoreGain) { bs = previous.currentScore + scoreGain; }
       return {
         cardsData: shuffle,
-        currentScore: previous.currentScore + 1,
-        bestScore: previous.bestScore
+        currentScore: previous.currentScore + scoreGain,
+        bestScore: bs
       }
     });
   }
 
+  useEffect(() => {
+    startNewGame();
+  }, [])
+
   return (
     <main>
       <Header />
-      <Analytics totalScore={gameState.cardsData.length} currentScore={gameState.currentScore} bestScore={gameState.bestScore} />
+      <Analytics totalScore={gameState.cardsData.length * scoreGain} currentScore={gameState.currentScore} bestScore={gameState.bestScore} handleNewGameClick={startNewGame} />
       <MatchBoard cardsData={gameState.cardsData} handleCardClick={handleCardClick} />
     </main>
   )

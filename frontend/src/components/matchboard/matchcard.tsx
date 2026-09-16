@@ -1,16 +1,17 @@
 import "@/styles/matchboard/matchcard.css"
 
 type MatchcardProps = {
+  cardIndex: number,
   id: number,
   name: string,
   types: Array<string>,
   sprite: string,
-  handleCardClick: React.MouseEventHandler<HTMLButtonElement>
+  handleCardClick: (cardIndex: number) => void
 }
 
-function Matchcard({ id, name, types, sprite, handleCardClick }: MatchcardProps) {
+function Matchcard({ cardIndex, id, name, types, sprite, handleCardClick }: MatchcardProps) {
   return (
-    <button className="matchcard-container" onClick={handleCardClick}>
+    <button className="matchcard-container" onClick={() => handleCardClick(cardIndex)}>
       <div className="pokemon-charateristics">
         <div className="pokemon-id">{id}</div>
         <div className="types">
