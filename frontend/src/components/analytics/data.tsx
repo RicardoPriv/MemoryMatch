@@ -1,23 +1,32 @@
 import "@/styles/analytics/Data.css"
+import type { CSSProperties } from "react"
 
+type DataProps = {
+  totalScore: number,
+  currentScore: number,
+  bestScore: number
+}
 
-function Data() {
+function Data({ totalScore, currentScore, bestScore }: DataProps) {
+  const scoreProgress = totalScore > 0 ? Math.min((currentScore / totalScore) * 100, 100) : 0;
+  const scoreBarStyle = { "--score-progress": `${scoreProgress}%` } as CSSProperties;
+
   return (
     <section id="data-section">
       <div id="score">
         <div className="container">
           <div className="data-desc">Current Score</div>
-          <div id="score-count">0/16</div>
+          <div id="score-count">{currentScore}/{totalScore}</div>
         </div>
-        <div id="score-bar"></div>
+        <div id="score-bar" style={scoreBarStyle}></div>
       </div>
       <div id="highscore">
         <div className="data-desc">Best Score</div>
-        <div id="highscore-count">0</div>
+        <div id="highscore-count">{bestScore}</div>
       </div>
       <div id="remaining">
         <div className="data-desc">Remaining</div>
-        <div id="remaining-count">0</div>
+        <div id="remaining-count">{totalScore - currentScore}</div>
       </div>
       <div id="log">
         <p>Waiting...</p>

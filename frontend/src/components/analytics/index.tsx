@@ -3,11 +3,17 @@ import Data from "./data.tsx"
 import NewGame from "./newgame.tsx"
 import "../../styles/analytics/index.css"
 
-function Analytics() {
+type AnalyticsProps = {
+  totalScore: number,
+  currentScore: number,
+  bestScore: number
+}
+
+function Analytics({ totalScore, currentScore, bestScore }: AnalyticsProps) {
   return (
     <section id="analytics-container">
       <Title />
-      <Data />
+      <Data totalScore={totalScore} currentScore={currentScore} bestScore={bestScore} />
       <NewGame />
     </section>
 

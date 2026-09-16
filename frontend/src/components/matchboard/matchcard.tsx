@@ -4,12 +4,13 @@ type MatchcardProps = {
   id: number,
   name: string,
   types: Array<string>,
-  sprite: string
+  sprite: string,
+  handleCardClick: React.MouseEventHandler<HTMLButtonElement>
 }
 
-function Matchcard({ id, name, types, sprite }: MatchcardProps) {
+function Matchcard({ id, name, types, sprite, handleCardClick }: MatchcardProps) {
   return (
-    <button className="matchcard-container">
+    <button className="matchcard-container" onClick={handleCardClick}>
       <div className="pokemon-charateristics">
         <div className="pokemon-id">{id}</div>
         <div className="types">

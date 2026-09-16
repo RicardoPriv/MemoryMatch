@@ -1,23 +1,23 @@
-import type { PokemonData } from "@/types/pokemonData";
+import type { PokemonCard } from "@/types/pokemonCard";
 import Matchcard from "./matchcard";
 
 type MatchBoardProps = {
-  cardsData: PokemonData[]
+  cardsData: PokemonCard[],
+  handleCardClick: React.MouseEventHandler<HTMLButtonElement>
 }
 
-function MatchBoard({ cardsData }: MatchBoardProps) {
-  const hasCardData = cardsData.some((item) => {
-    return Object.values(item).some((value) => value.length > 0)
-  })
+function MatchBoard({ cardsData, handleCardClick }: MatchBoardProps) {
+  const hasCardData = cardsData.length > 0;
 
   return (
     <section id="matchboard-container">
       {hasCardData && cardsData.map((cardData, index) => {
         return <Matchcard key={index}
-          id={cardData.id}
-          name={cardData.name}
-          types={cardData.types}
-          sprite={cardData.sprite} />
+          id={cardData.pokemon.id}
+          name={cardData.pokemon.name}
+          types={cardData.pokemon.types}
+          sprite={cardData.pokemon.sprite}
+          handleCardClick={handleCardClick} />
       })}
     </section>
   )
