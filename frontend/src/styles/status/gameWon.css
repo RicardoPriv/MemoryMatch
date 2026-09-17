@@ -1,0 +1,70 @@
+#game-won-container {
+  grid-column: 2;
+  grid-row: 2;
+  display: grid;
+  place-items: center;
+  min-height: 100%;
+  padding: clamp(1.25rem, 3vw, 2rem);
+  border-left: 1px solid var(--line-soft);
+  background:
+    linear-gradient(90deg, rgba(40, 191, 255, 0.06), transparent 16%),
+    radial-gradient(circle at 50% 18%, rgba(36, 211, 157, 0.12), transparent 42%),
+    linear-gradient(180deg, rgba(7, 22, 42, 0.82), rgba(3, 13, 30, 0.92));
+}
+
+#game-won-panel {
+  width: min(30rem, 100%);
+  padding: clamp(1.25rem, 3vw, 2rem);
+  text-align: center;
+  border: 1px solid rgba(49, 199, 255, 0.36);
+  border-radius: var(--corner-md);
+  background:
+    repeating-linear-gradient(
+      0deg,
+      rgba(49, 199, 255, 0.04) 0,
+      rgba(49, 199, 255, 0.04) 1px,
+      transparent 1px,
+      transparent 4px
+    ),
+    rgba(5, 16, 31, 0.88);
+  box-shadow:
+    0 0 0 1px rgba(49, 199, 255, 0.08) inset,
+    0 1.25rem 3rem rgba(0, 0, 0, 0.32),
+    0 0 2rem rgba(40, 191, 255, 0.14);
+}
+
+#game-won-kicker {
+  margin-bottom: 0.75rem;
+  color: var(--success);
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+#game-won-title {
+  margin: 0;
+  color: #edfaff;
+  font-family: var(--display);
+  font-size: clamp(2rem, 5vw, 3.75rem);
+  font-weight: 900;
+  line-height: 1;
+  text-transform: uppercase;
+  text-shadow: 0 0 1rem rgba(40, 191, 255, 0.18);
+}
+
+#game-won-message {
+  max-width: 23rem;
+  margin: 1rem auto 0;
+  color: var(--text-muted);
+  font-size: 0.95rem;
+}
+
+@media (max-width: 53.75rem) {
+  #game-won-container {
+    grid-column: 1;
+    grid-row: 3;
+    border-top: 1px solid var(--line-soft);
+    border-left: 0;
+  }
+}

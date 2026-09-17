@@ -1,7 +1,8 @@
 #analytics-container {
   display: grid;
-  grid-template-rows: auto 1fr auto;
-  gap: clamp(1.125rem, 2vw, 1.625rem);
+  grid-template-rows: auto minmax(0, 1fr) auto;
+  align-content: stretch;
+  gap: clamp(1.25rem, 2.4vw, 1.875rem);
   min-height: 100%;
   padding: var(--panel-pad);
   background:

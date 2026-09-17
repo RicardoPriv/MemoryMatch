@@ -28,9 +28,6 @@ function Data({ totalScore, currentScore, bestScore }: DataProps) {
         <div className="data-desc">Remaining</div>
         <div id="remaining-count">{totalScore - currentScore}</div>
       </div>
-      <div id="log">
-        <p>Waiting...</p>
-      </div>
     </section>
   )
 }

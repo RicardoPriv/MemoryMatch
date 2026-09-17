@@ -1,0 +1,104 @@
+#game-over-container {
+  grid-column: 2;
+  grid-row: 2;
+  display: grid;
+  align-content: center;
+  place-items: center;
+  gap: 1rem;
+  min-height: 100%;
+  padding: clamp(1.25rem, 3vw, 2rem);
+  border-left: 1px solid var(--line-soft);
+  background:
+    linear-gradient(90deg, rgba(40, 191, 255, 0.06), transparent 16%),
+    radial-gradient(circle at 50% 18%, rgba(43, 179, 225, 0.14), transparent 42%),
+    linear-gradient(180deg, rgba(7, 22, 42, 0.82), rgba(3, 13, 30, 0.92));
+}
+
+#game-over-panel {
+  width: min(30rem, 100%);
+  padding: clamp(1.25rem, 3vw, 2rem);
+  text-align: center;
+  border: 1px solid rgba(49, 199, 255, 0.36);
+  border-radius: var(--corner-md);
+  background:
+    repeating-linear-gradient(
+      0deg,
+      rgba(49, 199, 255, 0.04) 0,
+      rgba(49, 199, 255, 0.04) 1px,
+      transparent 1px,
+      transparent 4px
+    ),
+    rgba(5, 16, 31, 0.88);
+  box-shadow:
+    0 0 0 1px rgba(49, 199, 255, 0.08) inset,
+    0 1.25rem 3rem rgba(0, 0, 0, 0.32),
+    0 0 2rem rgba(40, 191, 255, 0.14);
+}
+
+#game-over-kicker {
+  margin-bottom: 0.75rem;
+  color: var(--warning);
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+#game-over-title {
+  margin: 0;
+  color: #edfaff;
+  font-family: var(--display);
+  font-size: clamp(2rem, 5vw, 3.75rem);
+  font-weight: 900;
+  line-height: 1;
+  text-transform: uppercase;
+  text-shadow: 0 0 1rem rgba(40, 191, 255, 0.18);
+}
+
+#game-over-message {
+  max-width: 23rem;
+  margin: 1rem auto 0;
+  color: var(--text-muted);
+  font-size: 0.95rem;
+}
+
+#start-over-button {
+  width: min(16rem, 100%);
+  min-height: 3.125rem;
+  padding: 0 1.25rem;
+  color: var(--cyan);
+  cursor: pointer;
+  border: 1px solid rgba(49, 199, 255, 0.5);
+  border-radius: var(--corner-md);
+  background:
+    linear-gradient(180deg, rgba(20, 83, 124, 0.82), rgba(9, 43, 75, 0.82)),
+    rgba(11, 47, 82, 0.8);
+  box-shadow:
+    0 0 1.125rem rgba(49, 199, 255, 0.16),
+    0 0 0 1px rgba(255, 255, 255, 0.04) inset;
+  font-family: var(--mono);
+  font-size: clamp(0.6875rem, 1vw, 0.75rem);
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+#start-over-button:hover {
+  border-color: rgba(49, 199, 255, 0.76);
+  background:
+    linear-gradient(180deg, rgba(27, 103, 151, 0.9), rgba(12, 55, 94, 0.9)),
+    rgba(11, 47, 82, 0.86);
+}
+
+#start-over-button:focus-visible {
+  outline: 2px solid var(--cyan);
+  outline-offset: 0.1875rem;
+}
+
+@media (max-width: 53.75rem) {
+  #game-over-container {
+    grid-column: 1;
+    grid-row: 3;
+    border-top: 1px solid var(--line-soft);
+    border-left: 0;
+  }
+}

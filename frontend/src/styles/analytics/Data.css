@@ -1,13 +1,12 @@
 #data-section {
   display: grid;
   align-content: start;
-  gap: clamp(0.875rem, 2vw, 1.5rem);
+  gap: clamp(0.875rem, 1.8vw, 1.25rem);
 }
 
 #score,
 #highscore,
-#remaining,
-#log {
+#remaining {
   position: relative;
   overflow: hidden;
   border: 1px solid rgba(27, 142, 202, 0.36);
@@ -27,8 +26,8 @@
 }
 
 #score {
-  min-height: 6.125rem;
-  padding: clamp(1.125rem, 1.8vw, 1.5rem) 1rem 1rem;
+  min-height: 6.75rem;
+  padding: clamp(1.125rem, 1.8vw, 1.375rem) 1.125rem 1rem;
 }
 
 #score .container,
@@ -43,7 +42,7 @@
 .data-desc {
   color: var(--text-muted);
   font-family: var(--mono);
-  font-size: clamp(0.5625rem, 0.8vw, 0.625rem);
+  font-size: clamp(0.625rem, 0.9vw, 0.75rem);
   font-weight: 800;
   letter-spacing: 0.05em;
   text-transform: uppercase;
@@ -60,29 +59,29 @@
 }
 
 #score-count {
-  font-size: clamp(1.5rem, 2.4vw, 1.625rem);
+  font-size: clamp(1.875rem, 3vw, 2.25rem);
   font-style: italic;
 }
 
 #highscore,
 #remaining {
-  min-height: 4.625rem;
-  padding: clamp(1.125rem, 1.8vw, 1.5rem) 1rem;
+  min-height: 4.875rem;
+  padding: clamp(1rem, 1.7vw, 1.25rem) 1.125rem;
 }
 
 #highscore-count {
   color: #edfaff;
-  font-size: clamp(1.125rem, 2vw, 1.3125rem);
+  font-size: clamp(1.5rem, 2.5vw, 1.875rem);
 }
 
 #remaining-count {
-  font-size: clamp(1.25rem, 2vw, 1.375rem);
+  font-size: clamp(1.625rem, 2.6vw, 2rem);
 }
 
 #score-bar {
   position: relative;
-  height: 4px;
-  margin-top: 0.75rem;
+  height: 6px;
+  margin-top: 1rem;
   overflow: hidden;
   border-radius: 999px;
   background: rgba(49, 199, 255, 0.12);
@@ -100,29 +99,13 @@
   transition: width 180ms ease;
 }
 
-#log {
-  display: grid;
-  min-height: 4.875rem;
-  place-items: center;
-  padding: clamp(1rem, 2vw, 1.125rem);
-}
-
-#log p {
-  color: var(--text-muted);
-  font-family: var(--mono);
-  font-size: clamp(0.6875rem, 1vw, 0.75rem);
-  font-style: italic;
-  letter-spacing: 0.06em;
-}
-
 @media (max-width: 53.75rem) {
   #data-section {
     grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 0.75rem;
   }
 
-  #score,
-  #log {
+  #score {
     grid-column: 1 / -1;
   }
 }
@@ -132,8 +115,7 @@
     grid-template-columns: 1fr;
   }
 
-  #score,
-  #log {
+  #score {
     grid-column: auto;
   }
 }
