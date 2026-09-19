@@ -1,18 +1,10 @@
 #matchboard-container {
-  grid-column: 2;
-  grid-row: 2;
   display: grid;
   grid-template-columns: repeat(5, minmax(0, 1fr));
   align-content: center;
   justify-items: center;
   gap: clamp(0.875rem, 2vw, 1.25rem);
-  min-height: 100%;
-  padding: clamp(1.25rem, 3vw, 2rem);
   overflow-y: auto;
-  border-left: 1px solid var(--line-soft);
-  background:
-    linear-gradient(90deg, rgba(40, 191, 255, 0.06), transparent 14%),
-    radial-gradient(circle at 50% 18%, rgba(43, 179, 225, 0.12), transparent 40%);
 }
 
 .matchcard-container {
@@ -118,11 +110,7 @@
 
 @media (max-width: 53.75rem) {
   #matchboard-container {
-    grid-column: 1;
-    grid-row: 3;
     grid-template-columns: repeat(auto-fit, minmax(8.75rem, 1fr));
-    border-top: 1px solid var(--line-soft);
-    border-left: 0;
   }
 }
 

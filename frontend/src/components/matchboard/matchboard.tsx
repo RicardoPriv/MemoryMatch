@@ -10,7 +10,7 @@ function MatchBoard({ cardsData, handleCardClick }: MatchBoardProps) {
   const hasCardData = cardsData.length > 0;
 
   return (
-    <section id="matchboard-container">
+    <section id="matchboard-container" className="board-surface">
       {hasCardData && cardsData.map((cardData, index) => {
         return <Matchcard key={cardData.pokemon.id}
           cardIndex={index}

@@ -150,8 +150,8 @@ function App() {
     <main>
       <Header />
       <Analytics totalScore={gameState.cardsData.length * scoreGain} currentScore={gameState.currentScore} bestScore={gameState.bestScore} handleNewGameClick={startNewGame} />
-      {loading() && <h2 id="loading-text">Loading...</h2>}
-      {error() && <h2 id="loading-text">Unable to load Pokemon data.</h2>}
+      {loading() && <h2 className="board-surface loading-text">Loading...</h2>}
+      {error() && <h2 className="board-surface loading-text">Unable to load Pokemon data.</h2>}
       {playing() && <MatchBoard cardsData={gameState.cardsData} handleCardClick={handleCardClick} />}
       {gameWon() && <GameWon />}
       {gameOver() && <GameOver startOverClick={startNewGame} />}
