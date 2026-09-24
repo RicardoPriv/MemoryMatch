@@ -5,99 +5,66 @@ import Analytics from './components/analytics'
 import MatchBoard from './components/matchboard/matchboard'
 import GameWon from './components/status/gameWon'
 import GameOver from './components/status/gameOver'
-import type { PokemonData } from './types/pokemonData'
-import type { PokemonCard } from './types/pokemonCard'
 import type { GameState } from './types/gameState'
-import { fetchPokemonData } from './api/pokemonApi'
 import { GAME_STATUS } from './config/status'
+import { getCardCountForLevel, loadXCards, shuffleCards } from './config/gameLogic'
 
-const cardCount = 10;
-const maxLoadAttempts = cardCount * 5;
+const maxFailAttempts: number = 10;
+const newGameLevel: number = 1;
 const gs = {
   cardsData: [],
   currentScore: 0,
   bestScore: 0,
-  status: GAME_STATUS.IDLE
+  status: GAME_STATUS.IDLE,
+  level: newGameLevel
 }
 const scoreGain = 1;
+
 
 function App() {
   const [gameState, setGameState] = useState<GameState>(gs)
 
   function startNewGame() {
-    async function loadData(id: number): Promise<PokemonCard | null> {
-      try {
-        const data = await fetchPokemonData(id);
+    loadLevel(newGameLevel);
+  }
 
-        const pokemonCard: PokemonData = {
-          id: data.id,
-          name: data.name,
-          types: data.types.map((typeData) => typeData.type.name),
-          sprite: data.sprites.front_default
-        }
+  async function loadLevel(level: number) {
+    setGameState((previous) => {
+      return {
+        ...previous,
+        status: GAME_STATUS.LOADING
+      }
+    })
+
+    const cardsData = await loadXCards(maxFailAttempts, level);
+
+    if (cardsData.length === getCardCountForLevel(level)) {
+      setGameState((previous) => {
+        const bScore = previous.bestScore < previous.currentScore ? previous.currentScore : previous.bestScore;
 
         return {
-          pokemon: pokemonCard,
-          clicked: false
-        };
-      } catch (error) {
-        console.error(error);
-        return null;
-      }
-    }
-
-    async function loadXCards(x: number) {
-      let i: number = 0;
-      let attempts: number = 0;
-      const cardsData: Array<PokemonCard> = []
-      const selectedIDs: Array<number> = []
+          ...previous,
+          cardsData: cardsData,
+          currentScore: 0,
+          bestScore: bScore,
+          status: GAME_STATUS.PLAYING,
+          level: level
+        }
+      })
+    } else {
       setGameState((previous) => {
         return {
           ...previous,
-          status: GAME_STATUS.LOADING
-        }
-      })
-
-      while (i < x && attempts < maxLoadAttempts) {
-        attempts++;
-        const seed: number = Math.floor(Math.random() * 151) + 1;
-
-        if (!selectedIDs.includes(seed)) {
-          const pokemonCard: PokemonCard | null = await loadData(seed);
-
-          if (pokemonCard) {
-            cardsData.push(pokemonCard);
-            selectedIDs.push(seed);
-            i++;
-          }
+          status: GAME_STATUS.ERROR,
         };
-      }
-
-      if (cardsData.length < x) {
-        setGameState((previous) => {
-          return {
-            ...previous,
-            status: GAME_STATUS.ERROR
-          }
-        })
-        return;
-      }
-
-      setGameState((previous) => {
-        return {
-          cardsData: cardsData,
-          currentScore: gs.currentScore,
-          bestScore: previous.bestScore,
-          status: GAME_STATUS.PLAYING
-        }
       })
     }
-
-    loadXCards(cardCount);
   }
 
   function handleCardClick(cardIndex: number) {
-    const shuffle = [...gameState.cardsData];
+    const shuffle = gameState.cardsData.map((card) => {
+      return { ...card };
+    })
 
     if (shuffle[cardIndex].clicked) {
       setGameState((previous) => {
@@ -111,26 +78,18 @@ function App() {
       shuffle[cardIndex].clicked = true;
     }
 
-    for (let i = shuffle.length - 1; i > 0; i--) {
-      const randomIndex = Math.floor(Math.random() * (i + 1));
-
-      const temp = shuffle[i];
-      shuffle[i] = shuffle[randomIndex];
-      shuffle[randomIndex] = temp;
-    }
+    shuffleCards(shuffle);
 
     setGameState((previous) => {
-      let bs = previous.bestScore;
       let st = previous.status;
-      if (bs < previous.currentScore + scoreGain) { bs = previous.currentScore + scoreGain; }
       if (previous.currentScore + scoreGain === previous.cardsData.length) {
         st = GAME_STATUS.WON;
       }
 
       return {
+        ...previous,
         cardsData: shuffle,
         currentScore: previous.currentScore + scoreGain,
-        bestScore: bs,
         status: st
       }
     });

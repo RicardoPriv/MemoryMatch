@@ -7,5 +7,6 @@ export interface GameState {
   cardsData: Array<PokemonCard>,
   currentScore: number,
   bestScore: number,
-  status: GameStatus
+  status: GameStatus,
+  level: number
 }
