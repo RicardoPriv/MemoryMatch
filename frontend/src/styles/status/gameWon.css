@@ -2,3 +2,38 @@
   --status-accent: var(--success);
   --surface-accent: rgba(36, 211, 157, 0.12);
 }
+
+#next-level-button {
+  display: grid;
+  place-items: center;
+  width: min(16rem, 100%);
+  min-height: 3.125rem;
+  padding: 0 1.25rem;
+  appearance: none;
+  color: var(--success);
+  cursor: pointer;
+  border: 1px solid rgba(36, 211, 157, 0.56);
+  border-radius: var(--corner-md);
+  background:
+    linear-gradient(180deg, rgba(24, 105, 83, 0.82), rgba(10, 54, 46, 0.86)),
+    rgba(12, 67, 54, 0.82);
+  box-shadow:
+    0 0 1.125rem rgba(36, 211, 157, 0.16),
+    0 0 0 1px rgba(255, 255, 255, 0.04) inset;
+  font-family: var(--mono);
+  font-size: clamp(0.6875rem, 1vw, 0.75rem);
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+#next-level-button:hover {
+  border-color: rgba(36, 211, 157, 0.82);
+  background:
+    linear-gradient(180deg, rgba(31, 128, 101, 0.9), rgba(13, 67, 56, 0.92)),
+    rgba(14, 79, 63, 0.88);
+}
+
+#next-level-button:focus-visible {
+  outline: 2px solid var(--success);
+  outline-offset: 0.1875rem;
+}

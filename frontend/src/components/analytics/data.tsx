@@ -2,17 +2,22 @@ import "@/styles/analytics/Data.css"
 import type { CSSProperties } from "react"
 
 type DataProps = {
+  level: number,
   totalScore: number,
   currentScore: number,
   bestScore: number
 }
 
-function Data({ totalScore, currentScore, bestScore }: DataProps) {
+function Data({ level, totalScore, currentScore, bestScore }: DataProps) {
   const scoreProgress = totalScore > 0 ? Math.min((currentScore / totalScore) * 100, 100) : 0;
   const scoreBarStyle = { "--score-progress": `${scoreProgress}%` } as CSSProperties;
 
   return (
     <section id="data-section">
+      <div id="level">
+        <div className="data-desc">Current Level</div>
+        <div id="level-count">{level}</div>
+      </div>
       <div id="score">
         <div className="container">
           <div className="data-desc">Current Score</div>

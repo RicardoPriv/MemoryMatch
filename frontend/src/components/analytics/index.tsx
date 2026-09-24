@@ -4,17 +4,18 @@ import NewGame from "./newgame.tsx"
 import "../../styles/analytics/index.css"
 
 type AnalyticsProps = {
+  level: number,
   totalScore: number,
   currentScore: number,
   bestScore: number,
   handleNewGameClick: () => void
 }
 
-function Analytics({ totalScore, currentScore, bestScore, handleNewGameClick }: AnalyticsProps) {
+function Analytics({ level, totalScore, currentScore, bestScore, handleNewGameClick }: AnalyticsProps) {
   return (
     <section id="analytics-container">
       <Title />
-      <Data totalScore={totalScore} currentScore={currentScore} bestScore={bestScore} />
+      <Data level={level} totalScore={totalScore} currentScore={currentScore} bestScore={bestScore} />
       <NewGame handleNewGameClick={handleNewGameClick} />
     </section>
 

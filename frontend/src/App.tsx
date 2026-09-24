@@ -40,13 +40,10 @@ function App() {
 
     if (cardsData.length === getCardCountForLevel(level)) {
       setGameState((previous) => {
-        const bScore = previous.bestScore < previous.currentScore ? previous.currentScore : previous.bestScore;
-
         return {
           ...previous,
           cardsData: cardsData,
           currentScore: 0,
-          bestScore: bScore,
           status: GAME_STATUS.PLAYING,
           level: level
         }
@@ -90,14 +87,26 @@ function App() {
         ...previous,
         cardsData: shuffle,
         currentScore: previous.currentScore + scoreGain,
+        bestScore: previous.bestScore + scoreGain,
         status: st
       }
     });
   }
 
+  function handleNextLevel() {
+    const nextLevel = gameState.level + 1;
+    loadLevel(nextLevel);
+  }
+
+  function reloadLevel() {
+    loadLevel(gameState.level);
+  }
+
+  /* eslint-disable react-hooks/exhaustive-deps */
   useEffect(() => {
     startNewGame();
   }, [])
+  /* eslint-enable react-hooks/exhaustive-deps */
 
   function loading() { return (gameState.status === GAME_STATUS.LOADING) }
   function playing() { return (gameState.status === GAME_STATUS.PLAYING) }
@@ -108,12 +117,13 @@ function App() {
   return (
     <main>
       <Header />
-      <Analytics totalScore={gameState.cardsData.length * scoreGain} currentScore={gameState.currentScore} bestScore={gameState.bestScore} handleNewGameClick={startNewGame} />
+      <Analytics level={gameState.level} totalScore={gameState.cardsData.length * scoreGain} currentScore={gameState.currentScore} bestScore={gameState.bestScore} handleNewGameClick={startNewGame} />
       {loading() && <h2 className="board-surface loading-text">Loading...</h2>}
       {error() && <h2 className="board-surface loading-text">Unable to load Pokemon data.</h2>}
       {playing() && <MatchBoard cardsData={gameState.cardsData} handleCardClick={handleCardClick} />}
-      {gameWon() && <GameWon />}
+      {gameWon() && <GameWon handleNextLevel={() => handleNextLevel()} />}
       {gameOver() && <GameOver startOverClick={startNewGame} />}
+      {error() && <button id="reload-level" onClick={() => reloadLevel()}>Reload Level</button>}
     </main>
   )
 }

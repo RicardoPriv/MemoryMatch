@@ -4,7 +4,10 @@ import { loadData } from "@/api/pokemonApi";
 import { CARDS_PER_LEVEL, GENERATIONS_RANGES, MAX_LEVELS } from "./levels";
 
 export function getCardCountForLevel(level: number): number {
-  return CARDS_PER_LEVEL * level;
+  const count = level <= MAX_LEVELS
+    ? CARDS_PER_LEVEL * level
+    : CARDS_PER_LEVEL * (MAX_LEVELS + 1);
+  return count;
 }
 
 export function getGenerationRangeForLevel(currentLevel: number): { start: number, end: number } {
@@ -37,14 +40,15 @@ export function shuffleCards(cards: Array<PokemonCard>) {
 }
 
 export async function loadXCards(maxFailedAttempts: number, currentLevel: number): Promise<Array<PokemonCard>> {
-  let i: number = 0;
-  let attempts: number = 0;
   const cardsData: Array<PokemonCard> = []
   const selectedIDs: Array<number> = []
-
   const levelRanges: { start: number, end: number } = getGenerationRangeForLevel(currentLevel);
+  const cardCount = getCardCountForLevel(currentLevel);
 
-  while (i < getCardCountForLevel(currentLevel) && attempts < maxFailedAttempts) {
+  let i: number = 0;
+  let attempts: number = 0;
+
+  while (i < cardCount && attempts < maxFailedAttempts) {
     const seed = getRandomPokemonID(levelRanges.start, levelRanges.end);
 
     if (!selectedIDs.includes(seed)) {
@@ -54,7 +58,7 @@ export async function loadXCards(maxFailedAttempts: number, currentLevel: number
         cardsData.push(pokemonCard);
         selectedIDs.push(seed);
         i++;
-      } else { attempts++; }
+      }
     } else { attempts++; }
 
   }

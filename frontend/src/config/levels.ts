@@ -1,5 +1,5 @@
 export const MAX_LEVELS: number = 9;
-export const CARDS_PER_LEVEL: number = 3;
+export const CARDS_PER_LEVEL: number = 2;
 
 export type Level = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9;
 

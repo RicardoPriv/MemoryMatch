@@ -1,7 +1,10 @@
-
 import "@/styles/status/gameWon.css"
 
-function GameWon() {
+type GameWonProps = {
+  handleNextLevel: () => void;
+}
+
+function GameWon({ handleNextLevel }: GameWonProps) {
   return (
     <section id="game-won-container" className="board-surface status-screen">
       <div id="game-won-panel" className="status-panel">
@@ -11,6 +14,7 @@ function GameWon() {
           Every Pokemon was logged once. Clean sequence confirmed.
         </p>
       </div>
+      <button id="next-level-button" onClick={handleNextLevel}>Next Level</button>
     </section>
   )
 }
