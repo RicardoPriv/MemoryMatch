@@ -4,8 +4,6 @@ A Pokemon-themed memory card game built with React, TypeScript, and Vite. The go
 
 The app uses live Pokemon data from the PokeAPI and presents the game as a sci-fi Pokedex research interface with score tracking, level progression, win/loss states, and an endless-level card cap.
 
-![Pokedex Memory Research UI](docs/UI.png)
-
 ## Gameplay
 
 - Click each Pokemon once to log it.
