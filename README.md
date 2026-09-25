@@ -88,8 +88,6 @@ frontend/
     styles/         Component and layout styles
     types/          Game and Pokemon TypeScript types
 docs/
-  future-improvements.md
-  *.png             App screenshots
 ```
 
 ## Notes
