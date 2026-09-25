@@ -139,21 +139,32 @@ p {
 }
 
 .primary-action {
+  --action-color: var(--cyan);
+  --action-border: rgba(49, 199, 255, 0.5);
+  --action-border-hover: rgba(49, 199, 255, 0.76);
+  --action-bg-top: rgba(20, 83, 124, 0.82);
+  --action-bg-bottom: rgba(9, 43, 75, 0.82);
+  --action-bg-base: rgba(11, 47, 82, 0.8);
+  --action-bg-top-hover: rgba(27, 103, 151, 0.9);
+  --action-bg-bottom-hover: rgba(12, 55, 94, 0.9);
+  --action-bg-base-hover: rgba(11, 47, 82, 0.86);
+  --action-shadow: rgba(49, 199, 255, 0.16);
+
   display: grid;
   place-items: center;
   width: min(16rem, 100%);
   min-height: 3.125rem;
   padding: 0 1.25rem;
   appearance: none;
-  color: var(--cyan);
+  color: var(--action-color);
   cursor: pointer;
-  border: 1px solid rgba(49, 199, 255, 0.5);
+  border: 1px solid var(--action-border);
   border-radius: var(--corner-md);
   background:
-    linear-gradient(180deg, rgba(20, 83, 124, 0.82), rgba(9, 43, 75, 0.82)),
-    rgba(11, 47, 82, 0.8);
+    linear-gradient(180deg, var(--action-bg-top), var(--action-bg-bottom)),
+    var(--action-bg-base);
   box-shadow:
-    0 0 1.125rem rgba(49, 199, 255, 0.16),
+    0 0 1.125rem var(--action-shadow),
     0 0 0 1px rgba(255, 255, 255, 0.04) inset;
   font-family: var(--mono);
   font-size: clamp(0.6875rem, 1vw, 0.75rem);
@@ -162,15 +173,41 @@ p {
 }
 
 .primary-action:hover {
-  border-color: rgba(49, 199, 255, 0.76);
+  border-color: var(--action-border-hover);
   background:
-    linear-gradient(180deg, rgba(27, 103, 151, 0.9), rgba(12, 55, 94, 0.9)),
-    rgba(11, 47, 82, 0.86);
+    linear-gradient(180deg, var(--action-bg-top-hover), var(--action-bg-bottom-hover)),
+    var(--action-bg-base-hover);
 }
 
 .primary-action:focus-visible {
-  outline: 2px solid var(--cyan);
+  outline: 2px solid var(--action-color);
   outline-offset: 0.1875rem;
+}
+
+.primary-action-success {
+  --action-color: var(--success);
+  --action-border: rgba(36, 211, 157, 0.56);
+  --action-border-hover: rgba(36, 211, 157, 0.82);
+  --action-bg-top: rgba(24, 105, 83, 0.82);
+  --action-bg-bottom: rgba(10, 54, 46, 0.86);
+  --action-bg-base: rgba(12, 67, 54, 0.82);
+  --action-bg-top-hover: rgba(31, 128, 101, 0.9);
+  --action-bg-bottom-hover: rgba(13, 67, 56, 0.92);
+  --action-bg-base-hover: rgba(14, 79, 63, 0.88);
+  --action-shadow: rgba(36, 211, 157, 0.16);
+}
+
+.primary-action-warning {
+  --action-color: var(--warning);
+  --action-border: rgba(240, 195, 74, 0.56);
+  --action-border-hover: rgba(240, 195, 74, 0.82);
+  --action-bg-top: rgba(112, 82, 22, 0.88);
+  --action-bg-bottom: rgba(57, 42, 14, 0.9);
+  --action-bg-base: rgba(82, 59, 14, 0.85);
+  --action-bg-top-hover: rgba(132, 97, 26, 0.94);
+  --action-bg-bottom-hover: rgba(72, 52, 17, 0.94);
+  --action-bg-base-hover: rgba(96, 69, 17, 0.9);
+  --action-shadow: rgba(240, 195, 74, 0.16);
 }
 
 @media (max-width: 47.5rem) {

@@ -123,7 +123,7 @@ function App() {
       {playing() && <MatchBoard cardsData={gameState.cardsData} handleCardClick={handleCardClick} />}
       {gameWon() && <GameWon handleNextLevel={() => handleNextLevel()} />}
       {gameOver() && <GameOver startOverClick={startNewGame} />}
-      {error() && <button id="reload-level" onClick={() => reloadLevel()}>Reload Level</button>}
+      {error() && <button id="reload-level" className="primary-action primary-action-warning" onClick={() => reloadLevel()}>Reload Level</button>}
     </main>
   )
 }

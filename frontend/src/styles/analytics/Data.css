@@ -8,41 +8,39 @@
 #level,
 #highscore,
 #remaining {
+  --metric-line: rgba(27, 142, 202, 0.36);
+  --metric-stripe: rgba(49, 199, 255, 0.035);
+  --metric-bg: rgba(7, 24, 45, 0.58);
+
   position: relative;
   overflow: hidden;
-  border: 1px solid rgba(27, 142, 202, 0.36);
+  border: 1px solid var(--metric-line);
   border-radius: var(--corner-md);
   background:
     repeating-linear-gradient(
       0deg,
-      rgba(49, 199, 255, 0.035) 0,
-      rgba(49, 199, 255, 0.035) 1px,
+      var(--metric-stripe) 0,
+      var(--metric-stripe) 1px,
       transparent 1px,
       transparent 3px
     ),
-    rgba(7, 24, 45, 0.58);
+    var(--metric-bg);
   box-shadow:
     0 0 0 1px rgba(49, 199, 255, 0.04) inset,
     0 0 1.375rem rgba(18, 120, 180, 0.1);
 }
 
 #level {
+  --metric-line: rgba(36, 211, 157, 0.42);
+  --metric-stripe: rgba(36, 211, 157, 0.035);
+  --metric-bg: rgba(7, 32, 38, 0.58);
+
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: clamp(0.75rem, 2vw, 1.125rem);
   min-height: 4.875rem;
   padding: clamp(1rem, 1.7vw, 1.25rem) 1.125rem;
-  border-color: rgba(36, 211, 157, 0.42);
-  background:
-    repeating-linear-gradient(
-      0deg,
-      rgba(36, 211, 157, 0.035) 0,
-      rgba(36, 211, 157, 0.035) 1px,
-      transparent 1px,
-      transparent 3px
-    ),
-    rgba(7, 32, 38, 0.58);
 }
 
 #score {

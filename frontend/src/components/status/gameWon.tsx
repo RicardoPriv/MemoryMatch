@@ -14,7 +14,7 @@ function GameWon({ handleNextLevel }: GameWonProps) {
           Every Pokemon was logged once. Clean sequence confirmed.
         </p>
       </div>
-      <button id="next-level-button" onClick={handleNextLevel}>Next Level</button>
+      <button id="next-level-button" className="primary-action primary-action-success" onClick={handleNextLevel}>Next Level</button>
     </section>
   )
 }

@@ -71,35 +71,10 @@ main::after {
   right: clamp(1rem, 2vw, 1.25rem);
   bottom: clamp(1rem, 2vw, 1.25rem);
   z-index: 5;
+  width: auto;
   min-height: 2.5rem;
   padding: 0 1rem;
-  appearance: none;
-  color: var(--warning);
-  cursor: pointer;
-  border: 1px solid rgba(240, 195, 74, 0.56);
-  border-radius: var(--corner-md);
-  background:
-    linear-gradient(180deg, rgba(112, 82, 22, 0.88), rgba(57, 42, 14, 0.9)),
-    rgba(82, 59, 14, 0.85);
-  box-shadow:
-    0 0 1rem rgba(240, 195, 74, 0.16),
-    0 0 0 1px rgba(255, 255, 255, 0.04) inset;
-  font-family: var(--mono);
   font-size: 0.6875rem;
-  font-weight: 900;
-  text-transform: uppercase;
-}
-
-#reload-level:hover {
-  border-color: rgba(240, 195, 74, 0.82);
-  background:
-    linear-gradient(180deg, rgba(132, 97, 26, 0.94), rgba(72, 52, 17, 0.94)),
-    rgba(96, 69, 17, 0.9);
-}
-
-#reload-level:focus-visible {
-  outline: 2px solid var(--warning);
-  outline-offset: 0.1875rem;
 }
 
 @media (max-width: 53.75rem) {
